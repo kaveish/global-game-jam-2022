@@ -6,11 +6,13 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 1f;
+    public bool alive;
     Rigidbody2D rb;
     Vector2 movement;
 
     void Start()
     {
+        alive = true;
         rb = GetComponent<Rigidbody2D>();
     }
 

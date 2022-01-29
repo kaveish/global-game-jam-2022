@@ -49,4 +49,12 @@ public class NPCWandering : MonoBehaviour
         if (Time.time > startMovingTime + collisionTimeout)
             direction = Random.insideUnitCircle.normalized;
     }
+
+    void OnTriggerEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Player"){
+            other.gameObject.GetComponent<PlayerController>().alive = false;
+            Time.timeScale = 0;
+        }
+    }
 }
