@@ -40,7 +40,6 @@ public class NPCWandering : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("collision!");
         startMovingTime = Time.time + 1f;
         direction = Random.insideUnitCircle.normalized;
     }
