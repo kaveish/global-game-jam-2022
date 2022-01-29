@@ -9,11 +9,17 @@ public class PlayerController : MonoBehaviour
     public bool alive;
     Rigidbody2D rb;
     Vector2 movement;
+    GameObject front;
+    GameObject back;
 
     void Start()
     {
         alive = true;
         rb = GetComponent<Rigidbody2D>();
+        front = gameObject.transform.Find("Girl Front").gameObject;
+        back = gameObject.transform.Find("Girl Back").gameObject;
+        FaceDirection(Vector2.up);
+        StopWalking();
     }
 
     void FixedUpdate()
@@ -24,6 +30,42 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         movement = movementValue.Get<Vector2>();
+
+        if(movement.magnitude > 0.1f)
+            StartWalking();
+        else
+            StopWalking();
+
+        if (movement.y > 0f)
+            FaceDirection(Vector2.up);
+        else if (movement.y < 0f)
+            FaceDirection(Vector2.down);
+    }
+
+    void FaceDirection(Vector2 direction)
+    {
+        if (direction == Vector2.up)
+        {
+            front.SetActive(false);
+            back.SetActive(true);
+        }
+        else
+        {
+            front.SetActive(true);
+            back.SetActive(false);
+        }
+    }
+
+    void StartWalking()
+    {
+        front.GetComponent<Animator>().SetBool("Walking", true);
+        back.GetComponent<Animator>().SetBool("Walking", true);
+    }
+
+    void StopWalking()
+    {
+        front.GetComponent<Animator>().SetBool("Walking", false);
+        back.GetComponent<Animator>().SetBool("Walking", false);
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -38,5 +80,5 @@ public class PlayerController : MonoBehaviour
             Time.timeScale = 0;
         }
 
-    }
+     }
 }
