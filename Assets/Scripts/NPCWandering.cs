@@ -28,9 +28,16 @@ public class NPCWandering : MonoBehaviour
         else
             tag = "Friend";
         isEnemy = Random.Range(0f,1.0f);
-        if(isEnemy > 0.5)
+        Debug.Log(isEnemy);
+        if(isEnemy > 0.5f)
         {
+            Debug.Log("Setting follow to false");
             doesFollow = false;
+        }
+        else
+        {
+            Debug.Log("Setting follow to false");
+            doesFollow = true;
         }
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
@@ -51,7 +58,7 @@ public class NPCWandering : MonoBehaviour
         GameObject player = GameObject.Find("Player");
         Vector3 dist = player.transform.position - transform.position;
         Vector2 direction = dist;
-        if(dist.magnitude < 3)
+        if(dist.magnitude < 3.0f)
         {
             Vector2 positionDelta = direction * speed * 1.0f * Time.fixedDeltaTime;
             rb.MovePosition(rb.position + positionDelta);

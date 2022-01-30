@@ -33,18 +33,12 @@ public class RandomAudioCall : MonoBehaviour
             if(tag == "Enemy" && enemyCalls.Count >0)
             {
                 int index = Random.Range(0,enemyCalls.Count);
-                Debug.Log("Enemy call");
-                Debug.Log(index);
-                Debug.Log(enemyCalls.Count);
                 enemyCalls[index].Play();
                 enemyCalls[index].pitch = pitch;
             }
             else if(calls.Count > 0)
             {
                 int index = Random.Range(0,calls.Count);
-                Debug.Log("Friend call");
-                Debug.Log(index);
-                Debug.Log(calls.Count);
                 calls[index].Play();
                 calls[index].pitch = pitch;
             }
