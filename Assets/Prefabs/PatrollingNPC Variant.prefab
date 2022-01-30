@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 310060302626285239, guid: 8c1b6007e22d9fb4fa9d500ff85e9a7d, type: 3}
       propertyPath: m_Name
-      value: PatrollingNPC
+      value: PatrollingNPC Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1300725569874576166, guid: 8c1b6007e22d9fb4fa9d500ff85e9a7d, type: 3}
       propertyPath: m_RootOrder
@@ -54,6 +54,10 @@ PrefabInstance:
     - target: {fileID: 1300725569874576166, guid: 8c1b6007e22d9fb4fa9d500ff85e9a7d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491883676831793700, guid: 8c1b6007e22d9fb4fa9d500ff85e9a7d, type: 3}
+      propertyPath: m_Mass
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c1b6007e22d9fb4fa9d500ff85e9a7d, type: 3}
@@ -188,4 +192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d4cc2765ef069e4cbc72620cf95553b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCall: {fileID: 752406027}
+  calls: []
+  minimum_delay: 3.5
+  maximum_delay: 10.5
