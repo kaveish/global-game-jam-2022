@@ -10,11 +10,16 @@ public class RandomAudioCall : MonoBehaviour
     public float maximum_delay = 10.5f;
     private float last_fire = 0.0f;
     private float delay = 0.5f;
+    private float pitch = 1.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         delay = Random.Range(minimum_delay, maximum_delay);
+        if(tag == "Enemy")
+        {
+            pitch = Random.Range(1.1f, 1.5f);
+        }
     }
 
     // Update is called once per frame
@@ -24,11 +29,6 @@ public class RandomAudioCall : MonoBehaviour
         {
             //myCall.Play();
             int index = Random.Range(0,calls.Count);
-            float pitch = 1.0f;
-            if(tag == "Enemy")
-            {
-                pitch = Random.Range(0.5f, 1.5f);
-            }
             calls[index].Play();
             calls[index].pitch = pitch;
             last_fire = Time.time;

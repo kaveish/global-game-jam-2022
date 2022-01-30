@@ -5,19 +5,26 @@ using UnityEngine;
 public class NPCWandering : MonoBehaviour
 {
     public float speed = 1f; 
-    public float movementStopTime = 1f;
-    public float collisionTimeout = 0.1f;
+    public float movementStopTime = 4f;
+    public float collisionCooldownTime = 2f;
 
     Rigidbody2D rb;
+    Animator animator;
     Vector2 direction;
+    Vector3 scale;
     float startMovingTime;
+    float collisionCooldownEnds;
+    bool isWalking;
+    bool doesFollow = true;
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        direction = Random.insideUnitCircle.normalized;
+        animator = GetComponentInChildren<Animator>();
+        scale = transform.localScale;
         startMovingTime = Time.time;
+        StartWalking();
     }
 
     // Update is called once per frame
@@ -27,7 +34,7 @@ public class NPCWandering : MonoBehaviour
 
     int Chase()
     {
-        if(tag != "Enemy")
+        if(!doesFollow)
             return 0;
         GameObject player = GameObject.Find("Player");
         Vector3 dist = player.transform.position - transform.position;
@@ -50,21 +57,71 @@ public class NPCWandering : MonoBehaviour
 
     void Wander()
     {
-        if (Time.time < startMovingTime)
-            return;
-        
-        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        if (!isWalking && Time.time > startMovingTime)
+            StartWalking();
+
+        if (isWalking)
+            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        startMovingTime = Time.time + 1f;
-        direction = Random.insideUnitCircle.normalized;
+        HandleCollision();
     }
 
     void OnCollisionStay2D(Collision2D other)
     {
-        if (Time.time > startMovingTime + collisionTimeout)
-            direction = Random.insideUnitCircle.normalized;
+        HandleCollision();
+    }
+
+    void HandleCollision()
+    {
+        // if walking and outside of cooldown, stop
+        if (isWalking && Time.time > collisionCooldownEnds)
+        {
+            if (gameObject.name == "KittyWandering")
+                Debug.Log("Collision! Stop walking");
+            StopWalking();
+        }
+        // if walking and within cooldown, start walking in a new direction
+        else if (isWalking)
+        {
+            if (gameObject.name == "KittyWandering")
+                Debug.Log("Collision! Start walking");
+            StartWalking();
+        }
+    }
+
+    void FaceDirection(Vector2 direction)
+    {
+        if (!animator)
+            return;
+
+        Debug.Log("Face direction " + (direction.x < 0));
+
+        if (direction.x < 0)
+            transform.localScale = new Vector3(scale.x, scale.y, scale.z);
+        else
+            transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+    }
+
+    void StartWalking()
+    {
+        isWalking = true;
+        collisionCooldownEnds = Time.time + collisionCooldownTime;
+        direction = Random.insideUnitCircle.normalized;
+        FaceDirection(direction);
+        if (animator)
+            animator.SetBool("Walking", true);
+    }
+
+    void StopWalking()
+    {
+        isWalking = false;
+        startMovingTime = Time.time + movementStopTime;
+        if (gameObject.name == "KittyWandering")
+            Debug.Log("Start walking in " + (startMovingTime - Time.time));
+        if (animator)
+            animator.SetBool("Walking", false);
     }
 }
