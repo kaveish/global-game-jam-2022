@@ -20,8 +20,8 @@ public class NPCWandering : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float isEnemy = Random.Range(0f,1.0f);
-        if(isEnemy > 0.6)
+        float isEnemy = Random.Range(0.0f,1.0f);
+        if(isEnemy > 0.5)
         {
             tag = "Enemy";
         }

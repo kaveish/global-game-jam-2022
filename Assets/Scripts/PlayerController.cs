@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        health = health - Time.fixedDeltaTime * 1.0f;
+        health = health - Time.fixedDeltaTime * 3.0f;
         Debug.Log(health);
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.tag == "Friend")
         {
-            health = 100;
+            health = 100.0f;
         }
 
      }
