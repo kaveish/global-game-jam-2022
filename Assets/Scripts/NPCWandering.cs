@@ -41,11 +41,17 @@ public class NPCWandering : MonoBehaviour
         Vector2 direction = dist;
         if(dist.magnitude < 3)
         {
-            rb.MovePosition(rb.position + direction * speed * 1.0f * Time.fixedDeltaTime);
+            Vector2 positionDelta = direction * speed * 1.0f * Time.fixedDeltaTime;
+            rb.MovePosition(rb.position + positionDelta);
+            FaceDirection(positionDelta);
+            if (animator)
+                animator.SetBool("Walking", true);
             return 1;
         }
         else
+        {
             return 0;
+        }
     }
 
     void FixedUpdate()
@@ -78,26 +84,16 @@ public class NPCWandering : MonoBehaviour
     {
         // if walking and outside of cooldown, stop
         if (isWalking && Time.time > collisionCooldownEnds)
-        {
-            if (gameObject.name == "KittyWandering")
-                Debug.Log("Collision! Stop walking");
             StopWalking();
-        }
         // if walking and within cooldown, start walking in a new direction
         else if (isWalking)
-        {
-            if (gameObject.name == "KittyWandering")
-                Debug.Log("Collision! Start walking");
             StartWalking();
-        }
     }
 
     void FaceDirection(Vector2 direction)
     {
         if (!animator)
             return;
-
-        Debug.Log("Face direction " + (direction.x < 0));
 
         if (direction.x < 0)
             transform.localScale = new Vector3(scale.x, scale.y, scale.z);
@@ -119,8 +115,6 @@ public class NPCWandering : MonoBehaviour
     {
         isWalking = false;
         startMovingTime = Time.time + movementStopTime;
-        if (gameObject.name == "KittyWandering")
-            Debug.Log("Start walking in " + (startMovingTime - Time.time));
         if (animator)
             animator.SetBool("Walking", false);
     }
