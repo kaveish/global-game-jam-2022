@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: fence_gate
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: a87665038590ec84e94633e0910b8a3d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d66b9cc31270446c7b12751bdbe766a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
