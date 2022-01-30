@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     GameObject back;
     GameObject side;
     Vector3 scale;
+    public GameObject bgMusic;
+    AudioSource bgMusicSrc;
 
     void Start()
     {
@@ -121,6 +123,10 @@ public class PlayerController : MonoBehaviour
 
         //Pauses gameplay
         Time.timeScale = 0;
+
+        bgMusic = GameObject.Find("bgmvol1");
+        bgMusicSrc = bgMusic.GetComponent<AudioSource>();
+        bgMusicSrc.Pause();
     }
 
     void OnCollisionEnter2D(Collision2D other)
