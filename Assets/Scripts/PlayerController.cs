@@ -26,16 +26,16 @@ public class PlayerController : MonoBehaviour
         movement = movementValue.Get<Vector2>();
     }
 
-    void OnTriggerEnter2D(Collider2D other){
-
+    void OnCollisionEnter2D(Collision2D other)
+    {
         //Checks if other gameobject has a Tag of Player
-        if(other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
             //Sets player status to dead
             alive = false;
 
             //Pauses gameplay
-            Time.timeScale = 0;         
+            Time.timeScale = 0;
         }
 
     }
