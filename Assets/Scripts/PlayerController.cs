@@ -6,11 +6,13 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 1f;
+    public bool alive;
     Rigidbody2D rb;
     Vector2 movement;
 
     void Start()
     {
+        alive = true;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -22,5 +24,19 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         movement = movementValue.Get<Vector2>();
+    }
+
+    void OnTriggerEnter2D(Collider2D other){
+
+        //Checks if other gameobject has a Tag of Player
+        if(other.gameObject.tag == "Enemy")
+        {
+            //Sets player status to dead
+            alive = false;
+
+            //Pauses gameplay
+            Time.timeScale = 0;         
+        }
+
     }
 }

@@ -7,18 +7,30 @@ using UnityEngine.InputSystem;
 public class UIManager : MonoBehaviour
 {
     GameObject[] pauseObjects;
+    GameObject[] finishObjects;
+    PlayerController playerController;
 
     // Use this for initialization
     void Start()
     {
         Time.timeScale = 1;
         pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
+        finishObjects = GameObject.FindGameObjectsWithTag("ShowOnDeath");
+
         hidePaused();
+        hideFinished();
+
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //shows finish gameobjects if player is dead and timescale = 0
+		if (Time.timeScale == 0 && playerController.alive == false){
+			showFinished();
+		}
     }
 
 
@@ -61,6 +73,20 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    //shows objects with ShowOnFinish tag
+	public void showFinished(){
+		foreach(GameObject g in finishObjects){
+			g.SetActive(true);
+		}
+	}
+
+	//hides objects with ShowOnFinish tag
+	public void hideFinished(){
+		foreach(GameObject g in finishObjects){
+			g.SetActive(false);
+		}
+	}
+
     //loads inputted level
     public void LoadLevel(string level)
     {
@@ -74,7 +100,7 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0;
             showPaused();
         }
-        else if (Time.timeScale == 0)
+        else if (Time.timeScale == 0 && playerController.alive == true)
         {
             Debug.Log("high");
             Time.timeScale = 1;

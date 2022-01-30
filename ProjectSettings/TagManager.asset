@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ShowOnDeath
   - ShowOnPause
+  - Enemy
   layers:
   - Default
   - TransparentFX
