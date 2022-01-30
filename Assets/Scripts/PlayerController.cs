@@ -12,11 +12,13 @@ public class PlayerController : MonoBehaviour
     GameObject front;
     GameObject back;
     GameObject side;
+    Vector3 scale;
 
     void Start()
     {
         alive = true;
         rb = GetComponent<Rigidbody2D>();
+        scale = transform.localScale;
         front = gameObject.transform.Find("Girl Front").gameObject;
         back = gameObject.transform.Find("Girl Back").gameObject;
         side = gameObject.transform.Find("Girl Side").gameObject;
@@ -38,12 +40,21 @@ public class PlayerController : MonoBehaviour
         else
             StopWalking();
 
-        if (movement.y > 0f)
+        if (movement.y > 0f) {
+            transform.localScale = new Vector3(scale.x, scale.y, scale.z);
             FaceDirection(Vector2.up);
-        else if (movement.y < 0f)
+        }
+        else if (movement.y < 0f) {
+            transform.localScale = new Vector3(scale.x, scale.y, scale.z);
             FaceDirection(Vector2.down);
-        else if (movement.x > 0f) 
+        }
+        else if (movement.x > 0f) {
+            transform.localScale = new Vector3(scale.x, scale.y, scale.z);
             FaceDirection(Vector2.left);
+        } else if (movement.x < 0f) {
+            transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+            FaceDirection(Vector2.left);
+        }
     }
 
     void FaceDirection(Vector2 direction)
