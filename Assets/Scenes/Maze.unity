@@ -37140,6 +37140,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 4490674854876666964, guid: f55a742640aae4714ae66ed5c2d0d30c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 786793219}
+    - target: {fileID: 4490674854876666964, guid: f55a742640aae4714ae66ed5c2d0d30c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
     - target: {fileID: 5232763013464492983, guid: f55a742640aae4714ae66ed5c2d0d30c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

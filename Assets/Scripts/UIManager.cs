@@ -33,6 +33,11 @@ public class UIManager : MonoBehaviour
 		}
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
 
     //Reloads the Level
     public void Reload()
