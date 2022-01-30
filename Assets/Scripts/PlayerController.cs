@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 1f;
     public bool alive;
+    public GameObject deadPlayerPrefab;
     Rigidbody2D rb;
     Vector2 movement;
     GameObject front;
@@ -96,6 +97,12 @@ public class PlayerController : MonoBehaviour
         {
             //Sets player status to dead
             alive = false;
+
+            Instantiate(deadPlayerPrefab, transform);
+            GetComponent<PlayerInput>().enabled = false;
+            front.SetActive(false);
+            back.SetActive(false);
+            side.SetActive(false);
 
             //Pauses gameplay
             Time.timeScale = 0;
