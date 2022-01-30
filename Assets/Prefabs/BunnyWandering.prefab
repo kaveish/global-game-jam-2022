@@ -75,6 +75,7 @@ MonoBehaviour:
   speed: 1
   movementStopTime: 4
   collisionCooldownTime: 1
+  doesFollow: 1
 --- !u!61 &4110724546674873701
 BoxCollider2D:
   m_ObjectHideFlags: 0

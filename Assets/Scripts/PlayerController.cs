@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 1f;
     public bool alive;
     public GameObject deadPlayerPrefab;
+    public float health = 100;
     Rigidbody2D rb;
     Vector2 movement;
     GameObject front;
@@ -29,6 +30,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        health = health - Time.fixedDeltaTime * 0.1f;
+        Debug.Log(health);
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 
@@ -106,6 +109,10 @@ public class PlayerController : MonoBehaviour
 
             //Pauses gameplay
             Time.timeScale = 0;
+        }
+        else
+        {
+            health = 100;
         }
 
      }
