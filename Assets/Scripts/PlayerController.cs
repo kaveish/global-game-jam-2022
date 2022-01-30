@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     Vector2 movement;
     GameObject front;
     GameObject back;
+    GameObject side;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         front = gameObject.transform.Find("Girl Front").gameObject;
         back = gameObject.transform.Find("Girl Back").gameObject;
+        side = gameObject.transform.Find("Girl Side").gameObject;
         FaceDirection(Vector2.up);
         StopWalking();
     }
@@ -40,6 +42,8 @@ public class PlayerController : MonoBehaviour
             FaceDirection(Vector2.up);
         else if (movement.y < 0f)
             FaceDirection(Vector2.down);
+        else if (movement.x > 0f) 
+            FaceDirection(Vector2.left);
     }
 
     void FaceDirection(Vector2 direction)
@@ -48,11 +52,15 @@ public class PlayerController : MonoBehaviour
         {
             front.SetActive(false);
             back.SetActive(true);
-        }
-        else
-        {
+            side.SetActive(false);
+        } else if (direction == Vector2.down) {
             front.SetActive(true);
             back.SetActive(false);
+            side.SetActive(false);
+        } else {
+            front.SetActive(false);
+            back.SetActive(false);
+            side.SetActive(true);
         }
     }
 
@@ -60,12 +68,14 @@ public class PlayerController : MonoBehaviour
     {
         front.GetComponent<Animator>().SetBool("Walking", true);
         back.GetComponent<Animator>().SetBool("Walking", true);
+        side.GetComponent<Animator>().SetBool("Walking", true);
     }
 
     void StopWalking()
     {
         front.GetComponent<Animator>().SetBool("Walking", false);
         back.GetComponent<Animator>().SetBool("Walking", false);
+        side.GetComponent<Animator>().SetBool("Walking", false);
     }
 
     void OnCollisionEnter2D(Collision2D other)
