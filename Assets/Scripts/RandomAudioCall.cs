@@ -6,6 +6,7 @@ public class RandomAudioCall : MonoBehaviour
 {
     //public AudioSource myCall;
     public List<AudioSource> calls = new List<AudioSource>();
+    public List<AudioSource> enemyCalls = new List<AudioSource>();
     public float minimum_delay = 3.5f;
     public float maximum_delay = 10.5f;
     private float last_fire = 0.0f;
