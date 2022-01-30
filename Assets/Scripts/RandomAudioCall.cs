@@ -26,12 +26,28 @@ public class RandomAudioCall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Time.time > last_fire + delay)
         {
-            //myCall.Play();
-            int index = Random.Range(0,calls.Count);
-            calls[index].Play();
-            calls[index].pitch = pitch;
+            //myCall.Play()   
+            if(tag == "Enemy" && enemyCalls.Count >0)
+            {
+                int index = Random.Range(0,enemyCalls.Count);
+                Debug.Log("Enemy call");
+                Debug.Log(index);
+                Debug.Log(enemyCalls.Count);
+                enemyCalls[index].Play();
+                enemyCalls[index].pitch = pitch;
+            }
+            else if(calls.Count > 0)
+            {
+                int index = Random.Range(0,calls.Count);
+                Debug.Log("Friend call");
+                Debug.Log(index);
+                Debug.Log(calls.Count);
+                calls[index].Play();
+                calls[index].pitch = pitch;
+            }
             last_fire = Time.time;
             delay = Random.Range(minimum_delay, maximum_delay);
         }
