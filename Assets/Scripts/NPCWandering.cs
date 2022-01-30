@@ -25,9 +25,27 @@ public class NPCWandering : MonoBehaviour
     {
     }
 
+    int Chase()
+    {
+        if(tag != "Enemy")
+            return 0;
+        GameObject player = GameObject.Find("Player");
+        Vector3 dist = player.transform.position - transform.position;
+        Vector2 direction = dist;
+        if(dist.magnitude < 3)
+        {
+            rb.MovePosition(rb.position + direction * speed * 1.0f * Time.fixedDeltaTime);
+            return 1;
+        }
+        else
+            return 0;
+    }
+
     void FixedUpdate()
     {
-        Wander();
+        int chasing = Chase();
+        if(chasing == 0)
+            Wander();
     }
 
     void Wander()
