@@ -209,9 +209,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   calls:
-  - {fileID: -8099685636096661112}
-  enemyCalls:
   - {fileID: -5140383360462031969}
+  enemyCalls:
+  - {fileID: -8099685636096661112}
   minimum_delay: 3.5
   maximum_delay: 10.5
 --- !u!82 &-5140383360462031969
