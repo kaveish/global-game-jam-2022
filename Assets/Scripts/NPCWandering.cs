@@ -21,7 +21,7 @@ public class NPCWandering : MonoBehaviour
     void Start()
     {
         float isEnemy = Random.Range(0.0f,1.0f);
-        if(isEnemy > 0.5)
+        if(isEnemy > 0.3)
         {
             tag = "Enemy";
         }

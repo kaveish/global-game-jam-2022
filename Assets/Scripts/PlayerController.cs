@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 1f;
@@ -30,8 +30,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        health = health - Time.fixedDeltaTime * 3.0f;
-        Debug.Log(health);
+        health = health - Time.fixedDeltaTime * 1.5f;
+        //Debug.Log(health);
+        if(health <  0)
+            die();
+        Text textbox = GetComponentInChildren<Text>();
+        textbox.text = Mathf.RoundToInt(health).ToString();
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 
@@ -93,12 +97,9 @@ public class PlayerController : MonoBehaviour
         side.GetComponent<Animator>().SetBool("Walking", false);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        //Checks if other gameobject has a Tag of Player
-        if (other.gameObject.tag == "Enemy")
-        {
-            //Sets player status to dead
+void die()
+{
+                //Sets player status to dead
             alive = false;
 
             Instantiate(deadPlayerPrefab, transform);
@@ -109,6 +110,13 @@ public class PlayerController : MonoBehaviour
 
             //Pauses gameplay
             Time.timeScale = 0;
+}
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        //Checks if other gameobject has a Tag of Player
+        if (other.gameObject.tag == "Enemy")
+        {
+            die();
         }
         else if (other.gameObject.tag == "Friend")
         {
