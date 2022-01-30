@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
- using UnityEngine.UI;
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 1f;
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         health = health - Time.fixedDeltaTime * 1.5f;
         //Debug.Log(health);
-        if(health <  0)
+        if (health < 0)
             die();
         Text textbox = GetComponentInChildren<Text>();
         textbox.text = "Health: " + Mathf.RoundToInt(health).ToString() + "/100";
@@ -43,23 +43,28 @@ public class PlayerController : MonoBehaviour
     {
         movement = movementValue.Get<Vector2>();
 
-        if(movement.magnitude > 0.1f)
+        if (movement.magnitude > 0.1f)
             StartWalking();
         else
             StopWalking();
 
-        if (movement.y > 0f) {
+        if (movement.y > 0f)
+        {
             transform.localScale = new Vector3(scale.x, scale.y, scale.z);
             FaceDirection(Vector2.up);
         }
-        else if (movement.y < 0f) {
+        else if (movement.y < 0f)
+        {
             transform.localScale = new Vector3(scale.x, scale.y, scale.z);
             FaceDirection(Vector2.down);
         }
-        else if (movement.x > 0f) {
+        else if (movement.x > 0f)
+        {
             transform.localScale = new Vector3(scale.x, scale.y, scale.z);
             FaceDirection(Vector2.left);
-        } else if (movement.x < 0f) {
+        }
+        else if (movement.x < 0f)
+        {
             transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
             FaceDirection(Vector2.left);
         }
@@ -72,11 +77,15 @@ public class PlayerController : MonoBehaviour
             front.SetActive(false);
             back.SetActive(true);
             side.SetActive(false);
-        } else if (direction == Vector2.down) {
+        }
+        else if (direction == Vector2.down)
+        {
             front.SetActive(true);
             back.SetActive(false);
             side.SetActive(false);
-        } else {
+        }
+        else
+        {
             front.SetActive(false);
             back.SetActive(false);
             side.SetActive(true);
@@ -97,20 +106,23 @@ public class PlayerController : MonoBehaviour
         side.GetComponent<Animator>().SetBool("Walking", false);
     }
 
-void die()
-{
-                //Sets player status to dead
-            alive = false;
+    void die()
+    {
+        health = 0.0f;
 
-            Instantiate(deadPlayerPrefab, transform);
-            GetComponent<PlayerInput>().enabled = false;
-            front.SetActive(false);
-            back.SetActive(false);
-            side.SetActive(false);
+        //Sets player status to dead
+        alive = false;
 
-            //Pauses gameplay
-            Time.timeScale = 0;
-}
+        Instantiate(deadPlayerPrefab, transform);
+        GetComponent<PlayerInput>().enabled = false;
+        front.SetActive(false);
+        back.SetActive(false);
+        side.SetActive(false);
+
+        //Pauses gameplay
+        Time.timeScale = 0;
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
         //Checks if other gameobject has a Tag of Player
@@ -123,5 +135,5 @@ void die()
             health = 100.0f;
         }
 
-     }
+    }
 }
