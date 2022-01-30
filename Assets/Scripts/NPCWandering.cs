@@ -15,7 +15,7 @@ public class NPCWandering : MonoBehaviour
     float startMovingTime;
     float collisionCooldownEnds;
     bool isWalking;
-    bool doesFollow = true;
+    public bool doesFollow = true;
     
     // Start is called before the first frame update
     void Start()
