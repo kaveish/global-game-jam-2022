@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         if(health <  0)
             die();
         Text textbox = GetComponentInChildren<Text>();
-        textbox.text = Mathf.RoundToInt(health).ToString();
+        textbox.text = "Health: " + Mathf.RoundToInt(health).ToString() + "/100";
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 

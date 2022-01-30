@@ -39037,6 +39037,38 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4213822013838769937, guid: 418a0906efdfae148b2daa7c4110d3a2, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213822013838769937, guid: 418a0906efdfae148b2daa7c4110d3a2, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213822013838769937, guid: 418a0906efdfae148b2daa7c4110d3a2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213822013838769937, guid: 418a0906efdfae148b2daa7c4110d3a2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213822013838769937, guid: 418a0906efdfae148b2daa7c4110d3a2, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213822013838769937, guid: 418a0906efdfae148b2daa7c4110d3a2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213822013838769937, guid: 418a0906efdfae148b2daa7c4110d3a2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213822013838769937, guid: 418a0906efdfae148b2daa7c4110d3a2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 5169966351270158024, guid: 418a0906efdfae148b2daa7c4110d3a2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -39084,6 +39116,14 @@ PrefabInstance:
     - target: {fileID: 5169966351270158026, guid: 418a0906efdfae148b2daa7c4110d3a2, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5968761957181103132, guid: 418a0906efdfae148b2daa7c4110d3a2, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5968761957181103132, guid: 418a0906efdfae148b2daa7c4110d3a2, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 418a0906efdfae148b2daa7c4110d3a2, type: 3}
