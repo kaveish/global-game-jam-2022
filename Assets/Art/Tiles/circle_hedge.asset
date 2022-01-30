@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: circle_hedge
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 57a3d066cba0e47a483c0761d1d1752c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 692a34d21963a4a5d9c0226d3704b522, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
