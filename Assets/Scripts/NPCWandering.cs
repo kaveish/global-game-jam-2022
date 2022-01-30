@@ -15,6 +15,7 @@ public class NPCWandering : MonoBehaviour
     float startMovingTime;
     float collisionCooldownEnds;
     bool isWalking;
+    bool doesFollow = true;
     
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,7 @@ public class NPCWandering : MonoBehaviour
 
     int Chase()
     {
-        if(tag != "Enemy")
+        if(!doesFollow)
             return 0;
         GameObject player = GameObject.Find("Player");
         Vector3 dist = player.transform.position - transform.position;
