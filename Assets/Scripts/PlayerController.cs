@@ -17,7 +17,12 @@ public class PlayerController : MonoBehaviour
     Vector3 scale;
     public GameObject bgMusic;
     AudioSource bgMusicSrc;
-
+    static string[] hintTexts = {
+        "Player 2 can hear the difference between friendly and deadly NPCs. Work together!",
+        "Your health decreases as you walk around the life-sapping maze. Hug friendly NPCs to regain it.",
+        "Git Gud",
+        "Enemies kill you immediately on contact. Plan your moves with your partner."
+    };
     void Start()
     {
         alive = true;
@@ -32,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+
         health = health - Time.fixedDeltaTime * 1.5f;
         //Debug.Log(health);
         if (health < 0)
@@ -39,6 +45,12 @@ public class PlayerController : MonoBehaviour
         Text textbox = GetComponentInChildren<Text>();
         textbox.text = "Health: " + Mathf.RoundToInt(health).ToString() + "/100";
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        speed = 3.0f;
+
+    }
+    public void OnSprintPress()
+    {
+        speed = 9.0f;
     }
 
     void OnMove(InputValue movementValue)
@@ -72,6 +84,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+  
     void FaceDirection(Vector2 direction)
     {
         if (direction == Vector2.up)
@@ -127,6 +140,10 @@ public class PlayerController : MonoBehaviour
         bgMusic = GameObject.Find("bgmvol1");
         bgMusicSrc = bgMusic.GetComponent<AudioSource>();
         bgMusicSrc.Pause();
+
+        Text hintText = GameObject.Find("DeathScreen").transform.Find("Canvas").transform.Find("Hint").GetComponent<Text>();
+        int rand = Random.Range(0, hintTexts.Length);
+        hintText.text = "Hint:\n" + hintTexts[rand];
     }
 
     void OnCollisionEnter2D(Collision2D other)
